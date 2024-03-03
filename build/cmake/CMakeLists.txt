@@ -173,7 +173,9 @@ foreach (flag
     -Wpointer-arith
 
     # MSVC-style
-    /W4)
+    /W4
+    /wd4711
+    /wd5045)
   # Because https://gcc.gnu.org/wiki/FAQ#wnowarning
   string(REGEX REPLACE "\\-Wno\\-(.+)" "-W\\1" flag_to_test "${flag}")
   string(REGEX REPLACE "[^a-zA-Z0-9]+" "_" test_name "CFLAG_${flag_to_test}")
@@ -215,7 +217,7 @@ if(NOT LZ4_BUNDLED_MODE)
     VERSION ${LZ4_VERSION_STRING}
     COMPATIBILITY SameMajorVersion)
 
-  set(LZ4_PKG_INSTALLDIR "${CMAKE_INSTALL_LIBDIR}/cmake/lz4")
+  set(LZ4_PKG_INSTALLDIR "${CMAKE_INSTALL_CMAKEDIR}/lz4")
   configure_package_config_file(
     "${CMAKE_CURRENT_LIST_DIR}/lz4Config.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/lz4Config.cmake"
